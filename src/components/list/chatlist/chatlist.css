@@ -9,7 +9,7 @@
         padding: 20px;   
         .SearchBar{
             flex: 1;
-            background-color: blueviolet;
+            background-color: rgba(34, 1, 87, 0.712);
             display: flex;
             align-items: center;
             gap: 20px;

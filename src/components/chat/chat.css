@@ -3,6 +3,8 @@
     border-left: 1px solid black;
     border-right: 1px solid black;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     
     .top{
       padding: 20px;
@@ -47,6 +49,102 @@
           width: 20px;
           height: 20px;
         }
+      }
+    }
+
+    .center{
+      padding: 20px;
+      flex: 1;
+      overflow: scroll;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .message{
+        max-width: 70%;
+        display: flex;
+        gap: 20px;
+
+        &.own{
+          align-self: flex-end;
+          .texts{
+            p{
+              background: #45eb4dc5;
+            }
+          }
+        }
+
+        img{
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .texts{
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          p{
+            padding: 20px;
+            background: #ffffff9f;
+            border-radius: 8px;
+          }
+          
+          span{
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .bottom{
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #000;
+      gap: 20px;
+      margin-top: auto;
+
+      .icons{
+        gap: 20px;
+        display: flex;
+      }
+      img{
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+      }
+      
+      input{
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.534);
+        border: none;
+        outline: none;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 16px;
+      }
+
+      .emoji{
+        position: relative;
+
+        .picker{
+          position: absolute;
+          bottom: 50px;
+          left: 0;
+        }
+      }
+
+      .sendButton{
+        background-color: cadetblue;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
       }
     }
   }
