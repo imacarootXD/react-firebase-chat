@@ -1,7 +1,7 @@
 import "./userinfo.css"
 
 
-const userinfo =() => {
+const UserInfo =() => {
     return(
         <div className='userinfo'>
             <div className="user">
@@ -19,4 +19,4 @@ const userinfo =() => {
     )
 }
 
-export default userinfo
+export default UserInfo

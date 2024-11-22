@@ -18,10 +18,11 @@
     }
     .icons {
          display:flex;
-         gap:20px;
+         gap: 25px;
          img{
             width: 20px;
             height: 20px;
+            cursor: pointer;
          }
     }
 }
