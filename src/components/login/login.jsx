@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./login.css"
 
+
 const Login = () => {
     const[avatar,setavatar] = useState({
         file:null,
@@ -14,12 +15,13 @@ const Login = () => {
              url: URL.createObjectURL(e.target.files[0])
              })
         }
-    }
+    } 
+
     return (
         <div className='login'>
             <div className="item">
             <h2>welcome back ...</h2>
-            <form>
+            <form >
                 <input type="text" placeholder="Email here" name="email" />
                 <input type="password" placeholder="password" name="password" />
                 <button>sign in</button>
@@ -28,7 +30,7 @@ const Login = () => {
             <div className="seperator"></div>
             <div className="item">
             <h2>create an account</h2>
-            <form>
+            <form >
                 <label htmlFor="file">
                     <img src={avatar.url || "./avatar.png"} alt="" />
                     upload an image</label>
