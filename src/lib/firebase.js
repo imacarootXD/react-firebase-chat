@@ -12,12 +12,12 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY ,
-  authDomain: "chat-ininiti.firebaseapp.com",
-  projectId: "chat-ininiti",
-  storageBucket: "chat-ininiti.firebasestorage.app",
-  messagingSenderId: "760618195935",
-  appId: "1:760618195935:web:03ef81ea5a7aa090a6426a",
-  measurementId: "G-5285G693NX"
+  authDomain: "sixthformtutors-efe24.firebaseapp.com",
+  projectId: "sixthformtutors-efe24",
+  storageBucket: "sixthformtutors-efe24.firebasestorage.app",
+  messagingSenderId: "207045511167",
+  appId: "1:207045511167:web:cd80e139b8eea9d2d8c9ca",
+  measurementId: "G-RGNPCS53GG"
 };
 
 // Initialize Firebase

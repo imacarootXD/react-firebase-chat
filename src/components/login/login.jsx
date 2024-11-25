@@ -2,9 +2,10 @@
 import { useState } from "react";
 import "./login.css";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import upload from "../../lib/upload";
 
 
 const Login = () => {
@@ -12,6 +13,8 @@ const Login = () => {
         file:null,
         url:""
     })
+
+    const[loading,setloading] = useState(false)
 
     const handleavatar = e =>{
         if(e.target.files[0]){
@@ -22,13 +25,28 @@ const Login = () => {
         }
     } 
 
-    const handlelogin = e =>{
-        e.preventDefault()
-        toast.error("hello")
-    }
+    const handlelogin = async (e) =>{
+        e.preventDefault();
+        setloading(true)
+        const fromData = new FormData(e.target)
+        const {email,password} = Object.fromEntries(fromData);
+        
+        try{
+
+            await signInWithEmailAndPassword(auth,email,password);
+
+        }catch(error){
+            console.log(error)
+            toast.error(error.message)
+        }
+        finally{
+            setloading(false)
+        }
+    };
 
     const handleregister = async (e) =>{
         e.preventDefault()
+        setloading(true)
         const fromData = new FormData(e.target)
         const {username,email,password} = Object.fromEntries(fromData);
         try{
@@ -39,6 +57,7 @@ const Login = () => {
             await setDoc(doc(db,"users",res.user.uid),{
                 username,
                 email,
+                avatar: imgUrl,
                 id: res.user.uid,
                 blocked: [],
             });
@@ -52,6 +71,9 @@ const Login = () => {
             console.log(error)
             toast.error(error.message)
         }
+        finally{
+            setloading(false);
+        }
     }
 
     return (
@@ -61,7 +83,7 @@ const Login = () => {
             <form onSubmit={handlelogin}>
                 <input type="text" placeholder="Email here" name="email" />
                 <input type="password" placeholder="password" name="password" />
-                <button>sign in</button>
+                <button disabled={loading}>{loading ? "loading" : "sign in"}</button>
             </form>
             </div>
             <div className="seperator"></div>
@@ -75,7 +97,7 @@ const Login = () => {
                 <input type="text" placeholder="username" name="username" />
                 <input type="text" placeholder="Email here" name="email" />
                 <input type="password" placeholder="password" name="password" />
-                <button>sign up</button>
+                <button disabled={loading}>{loading ? "loading" : "sign up"}</button>
             </form>
             </div>
         </div>
