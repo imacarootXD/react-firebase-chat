@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 
@@ -53,7 +53,7 @@ const Chat = () => {
                   <span>x time ago</span>
                </div>
             </div>
-            <div ref={endref}></div>
+            <div ref={endRef}></div>
          </div>
          <div className="bottom">
              <div className="icons">
