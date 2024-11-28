@@ -18,12 +18,21 @@ export const useChatStore = create((set) => ({
         })
         }
 
-        if (currentUser.blocked.includes(user.id)){
+        else if (currentUser.blocked.includes(user.id)){
             return set({
                 chatId,
                 user: user,
                 isCurrentUserBlocked: false,
                 isReceivingUserBlocked: true,
+            })
+        }
+        else{
+
+            return set({
+                chatId,
+                user: user,
+                isCurrentUserBlocked: false,
+                isReceivingUserBlocked: false,
             })
         }
     },

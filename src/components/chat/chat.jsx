@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 import { doc, onSnapshot } from "firebase/firestore";
+import { useChatStore } from "../../lib/chatStore";
 
 const Chat = () => {
    const [chat,setChat] = useState()
@@ -9,12 +10,13 @@ const Chat = () => {
     const [text,settext] = useState("");
     const handleemoji = e => {settext((prev) => prev + e.emoji); setOpen(false)};
     const endRef = useRef(null)
+    const{chatId} = useChatStore();
     useEffect(()=>{
       endRef.current?.scrollIntoView({behaviour:"smooth"})
-   },[])
+   },[chatId])
 
    useEffect(()=>{
-      const unSub = onSnapshot(doc(db,"chats",..),(Response)=>{
+      const unSub = onSnapshot(doc(db,"chats",chatId),(Response)=>{
          setChat(res.data())
       })
       return() =>{
@@ -38,32 +40,14 @@ const Chat = () => {
             </div>
          </div>
          <div className="center">
-            <div className="message">
-               <img src="./avatar.png" alt="" />
-               <div className="texts">
-                  <p> this is the message this is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the message</p>
-                  <span>x time ago</span>
-               </div>
-            </div>
+            {chat.messages.map((message)=>(
             <div className="message own">
                <div className="texts">
                   <p> this is the message this is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the message</p>
                   <span>x time ago</span>
                </div>
             </div>
-            <div className="message">
-               <img src="./avatar.png" alt="" />
-               <div className="texts">
-                  <p> this is the message this is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the message</p>
-                  <span>x time ago</span>
-               </div>
-            </div>
-            <div className="message own">
-               <div className="texts">
-                  <p> this is the message this is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the messagethis is the message</p>
-                  <span>x time ago</span>
-               </div>
-            </div>
+            ))}
             <div ref={endRef}></div>
          </div>
          <div className="bottom">
