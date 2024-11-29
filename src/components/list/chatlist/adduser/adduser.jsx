@@ -30,20 +30,29 @@ const AddUser = () =>{
         const userchatref = collection(db,"userchats")
 
         try{
-            const newchatref = doc(chatRef)
-            await setDoc(chatRef,{
+            const newchatref = doc(chatRef);
+            await setDoc(newchatref,{
                 createdAt: serverTimestamp(),
                 messages: [],
             });
 
-            await updateDoc(doc(userchatref,currentUser.id),{
+            await updateDoc(doc(userchatref,user.id),{
                 chats:arrayUnion({
                     chatId : newchatref.id,
                     lastmessage:"",
                     recieverId: currentUser.id,
                     updatedAt: Date.now(),
-                })
-            })
+                }),
+            });
+            
+            await updateDoc(doc(userchatref,currentUser.id),{
+                chats:arrayUnion({
+                    chatId : newchatref.id,
+                    lastmessage:"",
+                    recieverId: user.id,
+                    updatedAt: Date.now(),
+                }),
+            });
       }catch(error){
         console.log(error)
       }
