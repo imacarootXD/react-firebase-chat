@@ -39,5 +39,5 @@ export const useChatStore = create((set) => ({
 
     changeBlock: () => {
         set(state=>({...state,isReceivingUserBlocked: !state.isReceivingUserBlocked}));
-    }
+    },
 }))                                                                                                                                                                                                                                               ;
